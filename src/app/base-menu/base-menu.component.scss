@@ -1,0 +1,25 @@
+.container {
+    background-color: #009A17;
+}
+
+.menu-header {
+    margin-left: 50px;
+}
+
+.menu-items {
+    margin-left: auto;
+    margin-right: 50px;
+}
+
+.menu-items > span > a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.menu-items > span > a:hover {
+    text-decoration: underline;
+}
+
+.menu-items span:not(:last-child) {
+    margin-right: 30px;
+}
