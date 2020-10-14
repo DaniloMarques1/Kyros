@@ -1,27 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SigninComponent } from './signin.component';
-import { BaseMenuModule } from '../base-menu/base-menu.module';
-import {MatFormFieldModule} from '@angular/material/form-field'; 
+import { CreateLeagueComponent } from './create-league.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeMenuModule } from '../home-menu/home-menu.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input'; 
 
 @NgModule({
-  declarations: [SigninComponent],
+  declarations: [CreateLeagueComponent],
   imports: [
     CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    BaseMenuModule,
+    HomeMenuModule,
     MatFormFieldModule,
     FormsModule,
     MatInputModule
   ],
-  exports: [SigninComponent]
+  exports: [CreateLeagueComponent]
 })
-
-export class SigninModule { }
+export class CreateLeagueModule { }

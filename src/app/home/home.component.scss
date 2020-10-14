@@ -1,0 +1,19 @@
+.container {
+    margin-top: 20px;
+}
+
+.container h1 {
+    text-align: center;
+}
+
+.league-list {
+    margin: 0 30px;
+}
+
+.card {
+    background-color: #009A17;
+}
+
+.league-list .card:not(:last-child) {
+    margin-bottom: 10px;
+}
