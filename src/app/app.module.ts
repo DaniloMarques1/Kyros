@@ -4,10 +4,10 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SigninModule } from './signin/signin.module';
 import { BaseMenuModule } from './base-menu/base-menu.module';
 import { HomeModule } from './home/home.module';
 import { CreateLeagueModule } from './create-league/create-league.module';
+import { AuthenticateModule } from './authenticate/authenticate.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { CreateLeagueModule } from './create-league/create-league.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SigninModule,
+    AuthenticateModule,
     BaseMenuModule,
     HomeModule,
     CreateLeagueModule

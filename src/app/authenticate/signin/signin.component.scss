@@ -1,0 +1,17 @@
+.form {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.primary {
+    background-color: #009A17;
+    color: white;
+}
