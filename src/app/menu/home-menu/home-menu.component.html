@@ -11,6 +11,9 @@
                 <span>
                     <a href="#">Perfil</a>
                 </span>
+                <span>
+                    <a (click)="signOut()" [routerLink]="['/signin']" >Sair</a>
+                </span>
             </div>
         </mat-toolbar-row>
     </mat-toolbar>
