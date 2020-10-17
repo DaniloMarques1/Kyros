@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeMenuComponent } from './home-menu.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from '../app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { HomeMenuComponent } from './home-menu/home-menu.component';
+import { BaseMenuComponent } from './base-menu/base-menu.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [HomeMenuComponent],
+  declarations: [HomeMenuComponent, BaseMenuComponent],
   imports: [
     CommonModule,
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    RouterModule
   ],
-  exports: [HomeMenuComponent]
+  exports: [HomeMenuComponent, BaseMenuComponent]
 })
-export class HomeMenuModule { }
+export class MenuModule { }

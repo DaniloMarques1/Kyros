@@ -4,10 +4,10 @@ import { CreateLeagueComponent } from './create-league.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeMenuModule } from '../home-menu/home-menu.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input'; 
+import { MenuModule } from '../menu/menu.module';
 
 @NgModule({
   declarations: [CreateLeagueComponent],
@@ -16,10 +16,10 @@ import {MatInputModule} from '@angular/material/input';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HomeMenuModule,
     MatFormFieldModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    MenuModule
   ],
   exports: [CreateLeagueComponent]
 })
