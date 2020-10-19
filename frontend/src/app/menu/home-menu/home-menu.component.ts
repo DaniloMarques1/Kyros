@@ -13,9 +13,9 @@ export class HomeMenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  signOut() {
-    //TODO: clear token
-    console.log("opa");
+  signOut(): void {
+    // TODO: clear token
+    console.log('opa');
   }
 
 }

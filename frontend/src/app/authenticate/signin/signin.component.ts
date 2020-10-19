@@ -7,14 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-  
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  signIn() {
-    this.router.navigate(["/home"]);
+  signIn(): void {
+    this.router.navigate(['/home']);
   }
 
 }
