@@ -5,12 +5,12 @@
     <div class="form-group">
         <mat-form-field appearance="legacy">
             <mat-label>Email</mat-label>
-            <input matInput type="email" placeholder="youreamil@domain.com" />
+            <input [(ngModel)]="user.email" matInput type="email" placeholder="youreamil@domain.com" />
         </mat-form-field>
 
         <mat-form-field appearance="legacy">
             <mat-label>Password</mat-label>
-            <input matInput type="password" placeholder="*******" />
+            <input [(ngModel)]="user.password" matInput type="password" placeholder="*******" />
         </mat-form-field>
         <button mat-raised-button class="primary" (click)="signIn()" >Sign in</button>
     </div>
