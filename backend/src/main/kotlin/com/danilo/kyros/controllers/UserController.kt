@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin
 class UserController(private val userRepository: UserRepository) {
 
     @PostMapping("/signup")
@@ -46,7 +47,7 @@ class UserController(private val userRepository: UserRepository) {
         }
 
         //TODO: return token
-        return SignInResponseDTO(token = user?.id.toString(), kyrosUser = user!!)
+        return SignInResponseDTO(token = user?.id.toString(), user = user!!)
     }
 
 }

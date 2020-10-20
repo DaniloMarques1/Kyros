@@ -7,7 +7,6 @@ import javax.persistence.*
 data class KyrosUser(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     val id: Long = 0,
     @Column(length = 100)
     val name: String,
