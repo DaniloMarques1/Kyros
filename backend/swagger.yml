@@ -1,0 +1,112 @@
+openapi: 3.0.0
+
+info:
+  title: Kyros api
+  description: > 
+    Api que documenta o uso da api do app kyros. A api fornece endpoints para realizar o sign up, sign in, cadastro de times, ligas, entre outros.
+  version: 1.0.0
+
+servers: 
+  - url: http://127.0.0.1:8080
+    description: Local server
+
+paths:
+  /user/signin:
+    post:
+      tags: 
+       - Sign In
+      summary: Responsavel pelo login do usuario no sistema
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignInRequest'
+      responses:
+        '200':
+          description: Retorna um token que deve ser utilizado em outras requisicoes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignInResponse'
+        '400':
+          description: Sera retornado caso o email ou password nao tenham um correspondente no sistema.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+  /user/signup:
+    post:
+      tags:
+        - Sign up
+      summary: Usado para registrar um novo usuario no sistema
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUpRequest'
+      responses:
+        '201':
+          description: Retorna uma mensagem indicando que o usuario foi cadastrado corretamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignUpResponse'
+        '409':
+          description: Caso seja utilizado um email que ja tenha sido cadastrado e retornado a mensagem indicando o problema.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+                
+        '400':
+          description: Caso algum campo obrigatorio nao seja passado ou caso o password e o confirmPassword nao sejam iguais.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          
+          
+
+components:
+  schemas:
+    SignInRequest:
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    SignInResponse:
+      properties:
+        user:
+            $ref: '#/components/schemas/User'
+        token:
+          type: string
+    SignUpRequest:
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        confirmPassword:
+          type: string
+    SignUpResponse:
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+    User:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+          
+    BaseResponse:
+      properties:
+        message:
+          type: string
