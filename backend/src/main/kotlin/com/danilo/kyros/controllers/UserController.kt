@@ -5,6 +5,7 @@ import com.danilo.kyros.dtos.ResponseDTO
 import com.danilo.kyros.dtos.SignInResponseDTO
 import com.danilo.kyros.dtos.SignInUserDTO
 import com.danilo.kyros.entities.KyrosUser
+import com.danilo.kyros.exceptions.*
 import com.danilo.kyros.repositories.UserRepository
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
@@ -17,16 +18,21 @@ class UserController(private val userRepository: UserRepository) {
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
     fun signUp(@RequestBody signUpUserDTO: SignUpUserDTO): ResponseDTO {
-        val userExist = userRepository.findByEmail(signUpUserDTO.email)
-        if (userExist != null) {
-            //TODO
+
+        //TODO: better way to do this in the future
+        if (signUpUserDTO.password != signUpUserDTO.confirmPassword) {
+            throw BadRequestException("Password and confirm password does not match")
         }
 
-        val hashedPassword = "dothislater" // TODO
+        val userExist = userRepository.findByEmail(signUpUserDTO.email)
+        if (userExist != null) {
+            throw EmailAlreadyTakenException("Email already taken")
+        }
+
         val user = KyrosUser(
                 name = signUpUserDTO.name,
                 email = signUpUserDTO.email,
-                hashedPassword = hashedPassword
+                hashedPassword = signUpUserDTO.password
         )
         userRepository.save(user)
 
@@ -35,19 +41,15 @@ class UserController(private val userRepository: UserRepository) {
 
     @PostMapping("/signin")
     fun signIn(@RequestBody signInUserDTO: SignInUserDTO): SignInResponseDTO {
-        //TODO:
         val user = userRepository.findByEmail(signInUserDTO.email)
-        if (user == null) {
-            //TODO: invalid email
-        }
+                ?: throw BadRequestException("Invalid email")
 
-        val hashedPassword = "dothislater" //TODO
-        if (user?.hashedPassword != hashedPassword) {
-            //TODO invalid password
+        if (user.hashedPassword != signInUserDTO.password) {
+            throw BadRequestException("Invalid Password")
         }
 
         //TODO: return token
-        return SignInResponseDTO(token = user?.id.toString(), user = user!!)
+        return SignInResponseDTO(token = user.id.toString(), user = user)
     }
 
 }
