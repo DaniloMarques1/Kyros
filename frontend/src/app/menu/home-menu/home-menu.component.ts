@@ -14,8 +14,7 @@ export class HomeMenuComponent implements OnInit {
   }
 
   signOut(): void {
-    // TODO: clear token
-    console.log('opa');
+    localStorage.removeItem('kyrostoken');
   }
 
 }

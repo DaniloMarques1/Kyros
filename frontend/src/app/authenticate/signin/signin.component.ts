@@ -23,6 +23,7 @@ export class SigninComponent implements OnInit {
     this.userService.signIn(this.user).subscribe(
       response => {
         console.log(response);
+        localStorage.setItem('kyrostoken', response.token);
         this.router.navigate(['/home']);
       }
     );

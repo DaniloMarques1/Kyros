@@ -1,0 +1,17 @@
+<app-home-menu></app-home-menu>
+
+<div class="container">
+    <h2>Add a new league</h2>
+    <div class="form">
+        <mat-form-field appearance="fill">
+            <mat-label>League name</mat-label>
+            <input [(ngModel)]="createLeagueDTO.name" matInput type="text" placeholder="League one" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>How many teams are allowed to participate</mat-label>
+            <input [(ngModel)]="createLeagueDTO.maxTeams" matInput type="number" placeholder="8" />
+        </mat-form-field>
+        <button (click)="addLeague()" mat-raised-button class="primary">Create</button>
+    </div>
+</div>
