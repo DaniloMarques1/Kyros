@@ -1,6 +1,6 @@
 package com.danilo.kyros.dtos
 
-data class SignUpUserRequestDTO(
+data class SignUpRequestDTO(
         val name: String,
         val email: String,
         val password: String,
