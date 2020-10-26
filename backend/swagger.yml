@@ -66,7 +66,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BaseResponse'
-          
+
+  /league:
+    post:
+      security:
+        - BearerToken: []
+      tags:
+        - Create League
+      summary: Vai adicionar uma nova liga
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLeagueRequest'
+      responses:
+        '201':
+         description: Vai retornar um json com a liga criada
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/League'
+        '409':
+          description: Caso tente criar uma liga com um nome que ja foi utilizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+
           
 
 components:
@@ -97,6 +124,13 @@ components:
       properties:
         user:
           $ref: '#/components/schemas/User'
+    CreateLeagueRequest:
+      properties:
+        name:
+          type: string
+        maxTeams:
+          type: integer
+
     User:
       properties:
         id:
@@ -105,8 +139,21 @@ components:
           type: string
         email:
           type: string
-          
+    League:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        maxTeams:
+          type: string
+
     BaseResponse:
       properties:
         message:
           type: string
+
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
