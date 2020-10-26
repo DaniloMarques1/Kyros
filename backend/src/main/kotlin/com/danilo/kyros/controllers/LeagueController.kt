@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/leagues")
+@CrossOrigin
 class LeagueController(private val leagueService: LeagueService) {
     @PostMapping
     fun createLeague(@RequestBody createLeagueRequestDTO: CreateLeagueRequestDTO,
