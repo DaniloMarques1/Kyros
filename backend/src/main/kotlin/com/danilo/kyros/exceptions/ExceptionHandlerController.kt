@@ -21,6 +21,10 @@ class ExceptionHandlerController: ResponseEntityExceptionHandler() {
     fun handleBadRequest(exception: BadRequestException) =
             ResponseEntity(ResponseDTO(exception.message), HttpStatus.BAD_REQUEST)
 
+    @ExceptionHandler(UnauthorizedException::class)
+    fun unauthorizedException(exception: UnauthorizedException) =
+            ResponseEntity(ResponseDTO(exception.message), HttpStatus.UNAUTHORIZED)
+
     override fun handleHttpMessageNotReadable(ex: HttpMessageNotReadableException, headers: HttpHeaders, status: HttpStatus, request: WebRequest): ResponseEntity<Any> =
             ResponseEntity(ResponseDTO("you forgot a required field"), HttpStatus.BAD_REQUEST)
 

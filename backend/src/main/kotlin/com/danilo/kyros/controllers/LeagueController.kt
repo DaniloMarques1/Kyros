@@ -2,6 +2,7 @@ package com.danilo.kyros.controllers
 
 import com.danilo.kyros.dtos.CreateLeagueRequestDTO
 import com.danilo.kyros.dtos.GetAllLeaguesDTO
+import com.danilo.kyros.dtos.ResponseDTO
 import com.danilo.kyros.entities.League
 import com.danilo.kyros.services.LeagueService
 import org.springframework.http.HttpStatus
@@ -24,5 +25,13 @@ class LeagueController(private val leagueService: LeagueService) {
         val myLeagues = leagueService.findMyLeagues(id)
         val availableLeagues = leagueService.findAvailableLeagues(id)
         return ResponseEntity(GetAllLeaguesDTO(myLeagues, availableLeagues), HttpStatus.OK)
+    }
+
+    @DeleteMapping("/{id}")
+    fun removeLeague(@PathVariable("id") leagueId: Long, @RequestHeader("token") token: Long): ResponseEntity<ResponseDTO> {
+        println("token = $token")
+        println("id = $leagueId")
+        leagueService.removeLeague(leagueId, token)
+        return ResponseEntity(ResponseDTO("League removed successfuly"), HttpStatus.OK)
     }
 }
