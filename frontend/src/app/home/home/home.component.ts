@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
-import { LeagueService } from '../../shared/services/league.service';
 import { Router } from '@angular/router';
+import { League } from 'src/app/shared/models/League';
+import { LeagueService } from '../../shared/services/league.service';
+
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  myLeagues: League[];
+  availableLeagues: League[];
 
   constructor(private leagueService: LeagueService, private router: Router) {
     const token = localStorage.getItem('kyrostoken');
@@ -19,12 +23,24 @@ export class HomeComponent implements OnInit {
 
     this.leagueService.getAllLeagues(token).subscribe(
       response => {
-        console.log(response)
+        console.log(response);
+        this.myLeagues = response.myLeagues;
+        this.availableLeagues = response.availableLeagues;
       }
-    )
+    );
   }
 
   ngOnInit(): void {
+  }
+
+  remove(id: number): void {
+    const token = localStorage.getItem('kyrostoken');
+    this.leagueService.removeLeague(id.toString(), token).subscribe(
+      response => {
+        console.log(response);
+        this.myLeagues = this.myLeagues.filter(league => league.id !== id);
+      }
+    );
   }
 
 }

@@ -1,1 +1,31 @@
 <app-home-menu></app-home-menu>
+<div class="container">
+    <h2>Your leagues</h2>
+    <mat-card *ngFor="let league of myLeagues" class="league-list">
+        <mat-card-header>
+            <mat-card-title>{{league.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>Max teams allowd: {{league.maxTeams}}</p>
+            <p>Spots available: {{league.maxTeams}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="warn" (click)="remove(league.id)">Remover
+                <mat-icon>
+                    delete
+                </mat-icon>
+            </button>
+          </mat-card-actions>
+    </mat-card>
+    <h2>Leagues you can participate</h2>
+    <mat-card *ngFor="let league of availableLeagues" class="league-list">
+        <mat-card-header>
+            <mat-card-title>{{league.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>Max teams allowd: {{league.maxTeams}}</p>
+            <p>Spots available: {{league.maxTeams}}</p>
+        </mat-card-content>
+
+    </mat-card>
+</div>

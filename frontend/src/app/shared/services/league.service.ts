@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreateLeagueRequestDTO } from '../dtos/CreateLeagueRequestDTO';
 import { GetAllLeaguesDTO } from '../dtos/GetAllLeaguesDTO';
+import { ResponseDTO } from '../dtos/ResponseDTO';
 import { League } from '../models/League';
 
 
@@ -29,6 +30,16 @@ export class LeagueService {
       token: id
     });
     return this.httpClient.post<League>(`${this.BASE_URL}/leagues`, createLeagueRequestDTO, {
+      headers: httpHeader
+    });
+  }
+
+  removeLeague(id: string, token: string): Observable<ResponseDTO> {
+    const httpHeader = new HttpHeaders({
+      token
+    });
+
+    return this.httpClient.delete<ResponseDTO>(`${this.BASE_URL}/leagues/${id}`, {
       headers: httpHeader
     });
   }
