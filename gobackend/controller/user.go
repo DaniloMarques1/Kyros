@@ -9,24 +9,24 @@ import (
 	"kyros/model"
 	"kyros/response"
 
-	"github.com/satori/go.uuid"
+	uuid "github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
 )
 
-type signUpDto struct {
+type SignUpDto struct {
 	Name            string `json:"name"`
 	Email           string `json:"email"`
 	Password        string `json:"password"`
 	ConfirmPassword string `json:"confirmPassword"`
 }
 
-type signInDto struct {
+type SignInDto struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
 
 func SignUp(w http.ResponseWriter, r *http.Request) {
-	userDto := signUpDto{}
+    var userDto SignUpDto
 	json.NewDecoder(r.Body).Decode(&userDto)
 
 	if userDto.Password != userDto.ConfirmPassword {
@@ -41,7 +41,7 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 		Password: hashedPassword,
 	}
 
-	_, err := db.Db.Exec("insert into users(id, name, email, password) values($1, $2, $3, $4)", user.Id, user.Name, user.Email, user.Password)
+	_, err := db.Db.Exec("INSERT INTO users(id, name, email, password) VALUES($1, $2, $3, $4)", user.Id, user.Name, user.Email, user.Password)
 	if err != nil {
 		fmt.Printf("Error creating the user %v\n", err)
 		response.BadRequest(w, "Error creating the user")
@@ -53,10 +53,11 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 }
 
 func SignIn(w http.ResponseWriter, r *http.Request) {
-	signIn := signInDto{}
+	var signIn SignInDto
 	json.NewDecoder(r.Body).Decode(&signIn)
 	var user model.User
-	db.Db.QueryRow("select id, name, email, password from users where email = $1", signIn.Email).Scan(&user.Id, &user.Name, &user.Email, &user.Password)
+    db.Db.QueryRow("SELECT id, name, email, password FROM users WHERE email = $1", 
+        signIn.Email).Scan(&user.Id, &user.Name, &user.Email, &user.Password)
 	if user.Email == "" {
 		response.BadRequest(w, "Email invalid")
 		return
@@ -68,5 +69,5 @@ func SignIn(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// @@@ return jwt
-	json.NewEncoder(w).Encode("Opa")
+    json.NewEncoder(w).Encode(map[string]string{"token": user.Id.String()})
 }

@@ -43,10 +43,20 @@ func main() {
 	}
 
 	router := mux.NewRouter()
-	router.HandleFunc("/user", controller.SignUp).Methods(http.MethodPost)
-	router.HandleFunc("/session", controller.SignIn).Methods(http.MethodPost)
-	router.HandleFunc("/league", controller.CreateLeague).Methods(http.MethodPost)
+    route(router)
 	if err = http.ListenAndServe(":8080", router); err != nil {
 		fmt.Println(err)
 	}
+}
+
+func route(router *mux.Router) {
+    // user
+	router.HandleFunc("/user", controller.SignUp).Methods(http.MethodPost)
+	router.HandleFunc("/session", controller.SignIn).Methods(http.MethodPost)
+
+    // league
+	router.HandleFunc("/league", controller.CreateLeague).Methods(http.MethodPost)
+	router.HandleFunc("/league", controller.GetLeagues).Methods(http.MethodGet)
+	router.HandleFunc("/myleagues", controller.GetMyLeagues).Methods(http.MethodGet)
+	router.HandleFunc("/league/{pomodoro_id}", controller.RemoveLeague).Methods(http.MethodDelete)
 }
