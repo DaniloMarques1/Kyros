@@ -23,6 +23,7 @@ export class LeagueService {
     });
 
     return this.httpClient.get<GetAllLeaguesDTO>(`${this.BASE_URL}/leagues`, {headers: httpHeader});
+    //TODO
   }
 
   addLeague(id: string, createLeagueRequestDTO: CreateLeagueRequestDTO): Observable<League> {

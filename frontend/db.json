@@ -1,0 +1,28 @@
+{
+    "users" : [
+        {
+            "name": "Fitz",
+            "email": "fitz@gmail.com",
+            "leagues": [
+                {
+                    "name": "Liga ifpb",
+                    "maxTeams": 10,
+                    "admin": {
+                        "name": "Fitz",
+                        "email": "fitz@gmail.com"
+                    }
+                }
+            ]
+        }
+    ],
+    "leagues": [
+        {
+            "name": "Liga ifpb",
+            "maxTeams": 10,
+            "admin": {
+                "name": "Fitz",
+                "email": "fitz@gmail.com"
+            }
+        }
+    ]
+}

@@ -6,12 +6,11 @@ import SignInUserRequestDTO from '../dtos/SignInRequestDTO';
 import SignInResponseDTO from '../dtos/SignInResponseDTO';
 import UserCreatedResponseDTO from '../dtos/UserCreatedResponseDTO';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  // test
+  // TODO test
   private BASE_URL = 'http://127.0.0.1:8080';
 
   constructor(private httpClient: HttpClient) { }
